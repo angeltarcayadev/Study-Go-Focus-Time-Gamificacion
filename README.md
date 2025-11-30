@@ -1,16 +1,7 @@
-# study_go
+🛠️ Documentación Técnica del Proyecto: Study GoEste documento detalla la estructura y las interacciones de los componentes clave de la aplicación Study Go, centrándose en el flujo de autenticación, el temporizador y la sincronización de estadísticas.1. Arquitectura de Navegación y Auth FlowLa aplicación utiliza un flujo de navegación basado en Inyección de Dependencias (DI) a través de constructores, lo que garantiza que el AuthService esté disponible en toda la aplicación.Archivo/ClaseResponsabilidadDependencias (Inyección)main.dartPunto de entrada. Inicializa AuthService globalmente.AuthServiceSplashScreenPantalla inicial animada. Redirige a LoginPage después de la carga.AuthServiceLoginPageManeja la autenticación signIn y register (a través de Firebase/AuthService).AuthServiceHomePageEs el IndexedStack (Router Principal) que maneja las 5 pestañas del BottomNavigationBar.AuthService, usernameProfileDashboardPageCarga las estadísticas y el leaderboard.AuthService, usernameSettingsPageManeja la acción signOut.AuthService2. Flujo de Sincronización de Sesiones de EstudioLa sincronización de datos es crítica y se maneja centralmente a través de un único método en el servicio de autenticación.A. Registro de Actividad (FocusTimeScreen)El widget FocusTimeScreen es la fuente de verdad para el tiempo de estudio.Al finalizar o resetear el temporizador, se llama a: authService.logActivity(username, subject, duration).Esto elimina la necesidad de datos simulados en el perfil y las estadísticas, ya que todo se basa en el tiempo acumulado registrado.B. AuthService (Capa de Sincronización)El AuthService utiliza el username como identificador clave en su base de datos simulada y maneja toda la lógica de incremento de estadísticas.logActivity(userId, activityType, durationMinutes):Incrementa totalMinutes del usuario.Incrementa streak (simulado por cada sesión exitosa).Actualiza subjectStats (minutos estudiados por materia).C. Componentes de Lectura de DatosTodas las pantallas de visualización de estadísticas obtienen sus datos dinámicamente:PantallaLógica de CargaDatos Dinámicos ConsumidosProfileDashboardPageLlama a authService.getLeaderboard() para obtener la racha y el total de minutos.currentStreak, totalMinutes, studyReasonsEstadisticasPageLlama a authService.getLeaderboard(), authService.getSubjectStats(), y authService.getDailyActivityHistory() para poblar los gráficos de materias y la cuadrícula de productividad.subjectStats, _dailyHistory (Cuadrícula de Productividad)CaminoDeLogrosScreenLlama a authService.getLeaderboard() para calcular el progreso de desbloqueo de los cubos.totalHoursStudied3. Comandos para Subir DocumentaciónEjecute los siguientes comandos en su terminal de PowerShell, dentro de C:\Users\angel\StudioProjects\Study_GO, para crear el archivo y subirlo a GitHub:Crear el archivo de documentación (Si no lo ha hecho):(Puede usar este comando si no lo creó antes, aunque si el contenido de arriba ya estaba en su portapapeles, solo necesita el git add)# (Si no ha creado el archivo DOCUMENTATION_TECHNICAL.md localmente, ignore este paso)
 
-Aplicación de Productividad
+Añadir el archivo de documentación a Git:git add DOCUMENTATION_TECHNICAL.md
 
-## Getting Started
+Realizar el Commit (Guardar la versión):git commit -m "docs: Agregada documentación técnica detallada de la arquitectura."
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
