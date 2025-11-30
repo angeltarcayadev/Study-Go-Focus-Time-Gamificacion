@@ -1,0 +1,52 @@
+name: study_go
+description: Proyecto base con Firebase
+publish_to: "none"
+
+environment:
+  sdk: ">=3.4.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+
+  # Firebase
+  firebase_core: ^2.27.0
+  firebase_auth: ^4.17.8
+
+  # Google Sign-In
+  google_sign_in: ^6.2.1
+
+  # Facebook Sign-In
+  flutter_facebook_auth: ^6.1.1
+
+  # Estado y preferencias
+  provider: ^6.1.5+1
+  shared_preferences: ^2.1.0
+
+  # Internacionalización
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.20.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.4
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - lib/images/
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "lib/images/LogoOficial.png"
+  min_sdk_android: 21
+
+dependency_overrides:
+  google_sign_in: ^7.2.0
+  google_sign_in_platform_interface: ^3.0.0

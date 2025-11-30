@@ -1,0 +1,8 @@
+<resources>
+    <!-- Facebook SDK -->
+    <string name="facebook_app_id">24787661194249959</string>
+    <string name="facebook_client_token">2f3af2bcc1b8b79ce4116d73f150544c</string>
+
+    <!-- App -->
+    <string name="app_name">study_go</string>
+</resources>
